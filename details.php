@@ -198,13 +198,14 @@ include("inc/db_functions.php");
 			'product_id': productId,
 			'customer_id': customerId
 		};
+	
 
 		$.ajax({
 			method: 'POST',
 			url: 'customer/handlers/requests_handler.php?action=check_product_in_cart',
 			data: JSON.stringify(message),
 			success(data) {
-				data = JSON.parse(data);
+				data = JSON.stringify(data);
 
 				if (data.quantity > 0) {
 					let result = confirm('Такой продукт уже есть в корзине. Вы хотите увеличить количество на '
@@ -237,7 +238,7 @@ include("inc/db_functions.php");
 			success() {
 				alert('Продукт был добален в корзину');
 				console.log('Продукт был добален в корзину');
-				location.reload();
+				
 			}
 		});
 	}
@@ -255,7 +256,7 @@ include("inc/db_functions.php");
 			success() {
 				alert('Количество продука обновлено в корзине');
 				console.log('Продукт обновлен в корзине');
-				location.reload();
+				window.open("cart.php", "_self");
 			}
 		});
 	}
