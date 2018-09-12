@@ -142,7 +142,7 @@ include("inc/db_functions.php");
 									<input id="product_id" type="hidden" name="product_id" value="<?php echo $pro_id;
 									?>">
 									<input id="product_quantity" class="input" type="number" name="product_quantity"
-										   value="1">
+										   value="<?php echo $min_order; ?>">
 								</div>
 								<button  id="add_to_cart_btn" class="primary-btn add-to-cart" style="float: right; border-radius: 5px; padding-left: 2px;">
 									<i class="fa fa-shopping-cart"></i>
