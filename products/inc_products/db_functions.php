@@ -138,7 +138,9 @@ function db_get_product_in_active_cart($product_id, $cart_id) {
 			$rows["id"],
 			$rows["product_id"],
 			$rows["cart_id"],
-			$rows["quantity"]);
+			$rows["quantity"],
+			null,
+			null);
 	}
 
 	return $product_item;

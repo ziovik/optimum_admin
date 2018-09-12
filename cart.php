@@ -61,7 +61,7 @@
             <div class="container">
                 <ul class="breadcrumb">
                     <li><a href="optimum_beauty.php">Главная</a></li>
-                    <li class="active">Карзина</li>
+                    <li class="active">Корзина</li>
                 </ul>
             </div>
         </div>
