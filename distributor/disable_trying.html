@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+		<form action="" method="post" class="form-disable">
+			<input type="text" name="name" placeholder="name"/>
+			<button type="submit" class="btn btn-default" name="roll" <?php echo isset($_POST['roll']) ? 'disabled="true"' : ''; ?> >Roll Branch </button> 			
+			<button type="submit" name="clicked" id="clicked" onblur="validate()" disabled value="true" >Roll Branch </button> 
+			<script>
+				function validate() {
+					
+					$("#clicked").attr("disabled",true);
+					if(valid) {
+						$("#clicked").attr("disabled",false);
+					}	
+				}
+			</script>
+		</form>		
+	</body>
+</html>
+
+
+
+
+<button type="submit" id="roll" class="btn btn-default">Roll Branch </button> 			
+			<button type="submit" name="clicked" id="clicked" onblur="validate()" disabled="true">Roll Branch </button>
+
+
+
+			jquery
+
+			<script>
+
+			$('#roll').on('click',function(){
+  $('#roll').attr('disabled', true);
+  $('#clicked').attr('disabled', false);
+});
+$('#clicked').on('click',function(){
+  $('#roll').attr('disabled', false);
+  $('#clicked').attr('disabled', true);
+});
+</script>
