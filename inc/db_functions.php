@@ -7,10 +7,6 @@
  */
 
 include ("db.php");
-include($_SERVER['DOCUMENT_ROOT']."/db_objects/DistributorMessage.php");
-include ($_SERVER['DOCUMENT_ROOT']."/db_objects/CustomerMessage.php");
-include ($_SERVER['DOCUMENT_ROOT']."/db_objects/ProductItem.php");
-include ($_SERVER['DOCUMENT_ROOT']."/db_objects/Store_item.php");
 
 
 function db_create_cart_for_customer($customer_id)

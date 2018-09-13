@@ -6,8 +6,10 @@
  * Time: 1:18 PM
  */
 session_start();
-include_once("../../inc/functions.php");
-include_once("../../inc/db_functions.php");
+include_once "../../inc/functions.php";
+include_once "../../inc/db_functions.php";
+include_once "../../db_objects/CustomerMessage.php";
+include_once "../../db_objects/DistributorMessage.php";
 
 $customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : null;
 $customer_name = isset($_SESSION['customer_name']) ? $_SESSION['customer_name'] : null;

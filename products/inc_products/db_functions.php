@@ -6,11 +6,7 @@
  * Time: 11:14 PM
  */
 
-include ($_SERVER['DOCUMENT_ROOT']."/optimum-master/inc/db.php");
-include($_SERVER['DOCUMENT_ROOT']."/optimum-master/db_objects/DistributorMessage.php");
-include ($_SERVER['DOCUMENT_ROOT']."/optimum-master/db_objects/CustomerMessage.php");
-include ($_SERVER['DOCUMENT_ROOT']."/optimum-master/db_objects/ProductItem.php");
-include ($_SERVER['DOCUMENT_ROOT']."/optimum-master/db_objects/Store_item.php");
+include ($_SERVER['DOCUMENT_ROOT']."/optimum-master/inc/db.php"); // need to be deleted!
 
 
 function db_create_cart_for_customer($customer_id)

@@ -90,7 +90,7 @@
                         
                         
                         ?>
-                     <li><a href="my_account.php?active_orders">Активный заказа  <i class="fa fa-spinner fa-spin" style="font-size:24px"></i></a></li>
+                     <li><a href="my_account.php?active_orders">Активный заказ  <i class="fa fa-spinner fa-spin" style="font-size:24px"></i></a></li>
                      <li><a href="my_account.php?my_history">История заказов  <i class="fa fa-history" style="font-size:26px"></i></a></li>
                      <li><a href="logout.php">Выити  <i class="fa fa-sign-out" style="font-size:24px"></i></a></li>
                   </ul>
@@ -139,9 +139,6 @@
                      if (isset($_GET['chat'])) {
                      	include("chat.php");
                      }
-                     
-                      
-                     
                      ?>
                </div>
                <!-- /section -->
