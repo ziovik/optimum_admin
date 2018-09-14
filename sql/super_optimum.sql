@@ -1,23 +1,21 @@
-drop database if exists super_optimum;
-CREATE DATABASE super_optimum CHARACTER SET utf8 COLLATE utf8_general_ci;
+drop database if exists optimum;
+CREATE DATABASE optimum
+  CHARACTER SET utf8
+  COLLATE utf8_general_ci;
 
-use super_optimum;
+use optimum;
 
 create table admins (
-  id            int                not null auto_increment,
-  user_email    varchar(30)        not null,
-  user_pass     varchar(100)       not null,
- 
+  id         int          not null auto_increment,
+  user_email varchar(30)  not null,
+  user_pass  varchar(100) not null,
 
   primary key (id)
-  
 );
 
 insert into admins values
   (1, 'admin', 'admin'),
   (2, 'velox', '1234');
- 
-
 
 -- roles table
 create table role (
@@ -189,9 +187,9 @@ create table customer (
     on update cascade
 );
 
-insert into customer (id, name,  contact_id, region_id, address_id, credentials_id) values
+insert into customer (id, name, contact_id, region_id, address_id, credentials_id) values
   (1, 'Alex', 1, 3, 4, 2), -- 3 is Voronej
-  (2, 'Daniel',  2, 1, 1, 3); -- 1 is Kursk
+  (2, 'Daniel', 2, 1, 1, 3); -- 1 is Kursk
 
 
 create table distributor (
@@ -205,6 +203,7 @@ create table distributor (
   primary key (id),
 
   foreign key (company_id) references company (id)
+    on delete cascade
     on update cascade,
 
   foreign key (contact_id) references contact (id)
@@ -234,7 +233,7 @@ create table store (
   id             bigint not null auto_increment,
   region_id      bigint not null,
   distributor_id bigint not null,
-  
+
 
   primary key (id),
 
@@ -278,7 +277,6 @@ insert into category values
   (9, 'Татуаж и пирсинг'),
   (10, 'Расходные материалы и одноразовые принадлежности'),
   (11, 'терилизация и дезинфекция');
-
 
 
 create table sub_category (
@@ -341,22 +339,19 @@ insert into sub_category values
   (35, 'Стерилизаторы, принадлежности и расходники', 11);
 
 
-
-
 create table product (
   id              bigint              not null auto_increment,
   distributor_id  bigint              not null,
   sub_category_id bigint,
-  name            varchar(255)        unique not null,
+  name            varchar(255) unique not null,
   manufacturer    varchar(255),
   expires         date,
   licence         varchar(255),
   code            varchar(50),
   discount        double,
   description     varchar(255),
-  
-  
-  
+
+
   primary key (id),
 
   foreign key (distributor_id) references distributor (id)
@@ -368,14 +363,25 @@ create table product (
     on update cascade
 );
 
+insert into product (id, distributor_id, sub_category_id, name, manufacturer, expires, licence, code, discount, description)
+values
+  (1, 2, 1, 'Крем для бритья', null, null, null, 0, 0, 0),
+  (2, 2, 1, 'Крем для рук', null, null, null, 0, 0, 0),
+
+  (3, 1, 3, 'iPhone 10', null, null, null, 0, 0, 0),
+  (4, 1, 4, 'iMac', null, null, null, 0, 0, 0),
+
+  (5, 3, 5, 'Крутая красная футболка', null, null, null, 0, 0, 0),
+  (6, 3, 6, 'Очень классные синие кроссовки', null, null, null, 0, 0, 0);
+
 
 create table store_item (
-  id              bigint          not null auto_increment,
-  product_id      bigint          not null,
-  store_id        bigint,
-  price           double              not null,
-  min_order       double,
-  max_order       double,
+  id         bigint not null auto_increment,
+  product_id bigint not null,
+  store_id   bigint,
+  price      double not null,
+  min_order  double,
+  max_order  double,
 
   primary key (id),
 
@@ -388,8 +394,15 @@ create table store_item (
     on update cascade
 );
 
+insert into store_item (id, product_id, store_id, price, min_order, max_order) values
+  (1, 1, 1, 800, 3, 10),
+  (2, 2, 1, 500, 15, 50),
 
+  (3, 3, 1, 400, 5, 20),
+  (4, 4, 3, 4500, 5, 15),
 
+  (5, 5, 3, 1500, 4, 10),
+  (6, 6, 2, 2500, 2, 12);
 
 -- cart table --
 create table cart (
@@ -410,11 +423,11 @@ insert into cart (id, customer_id, status) values
 
 -- product_item table --
 create table product_item (
-  id         bigint not null auto_increment,
-  product_id bigint not null,
-  quantity   double not null,
-  cart_id    bigint not null,
-  onscreen_status  varchar(20) ,
+  id              bigint not null auto_increment,
+  product_id      bigint not null,
+  quantity        double not null,
+  cart_id         bigint not null,
+  onscreen_status varchar(20),
 
   primary key (id),
 
@@ -427,17 +440,14 @@ create table product_item (
     on update cascade
 );
 
-
-
-
 -- history table --
 create table history (
-  id         bigint not null auto_increment,
-  product_id bigint not null,
-  quantity   double not null,
-  cart_id    bigint not null,
+  id         bigint      not null auto_increment,
+  product_id bigint      not null,
+  quantity   double      not null,
+  cart_id    bigint      not null,
   status     varchar(20) not null, -- active/inactive (inactive is in history)
-  order_date datetime not null,
+  order_date datetime    not null,
 
   primary key (id),
 
@@ -465,23 +475,20 @@ create table simple_order (
 insert into simple_order values
   (1, now() - interval 10 day, 1); -- my order in past
 
-
 create table customer_chat (
-   id                bigint   not null  primary key auto_increment,
-   customer_id       bigint   not null,
-   
-   distributor_id    bigint   not null,
-   message           varchar(255),
-   message_date     datetime  not null 
+  id             bigint   not null  primary key auto_increment,
+  customer_id    bigint   not null,
+
+  distributor_id bigint   not null,
+  message        varchar(255),
+  message_date   datetime not null
 );
 
-
-
 create table distributor_chat (
-   id                bigint   not null  primary key auto_increment,
-   distributor_id    bigint   not null,
-   
-   customer_id       bigint   not null,
-   message           varchar(255),
-   message_date     datetime  not null 
+  id             bigint   not null  primary key auto_increment,
+  distributor_id bigint   not null,
+
+  customer_id    bigint   not null,
+  message        varchar(255),
+  message_date   datetime not null
 );

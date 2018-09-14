@@ -5,10 +5,11 @@
  * Date: 8/28/2018
  * Time: 1:18 PM
  */
-print_r("<script>console.log('ass')</script>");
 session_start();
-include_once("../../inc/functions.php");
-include_once("../../inc/db_functions.php");
+include_once "../../inc/functions.php";
+include_once "../../inc/db_functions.php";
+include_once "../../db_objects/CustomerMessage.php";
+include_once "../../db_objects/DistributorMessage.php";
 
 $customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : null;
 $customer_name = isset($_SESSION['customer_name']) ? $_SESSION['customer_name'] : null;
@@ -48,13 +49,10 @@ function show_messages($messages)
 		}
 	}
 }
-print_r("<script>console.log('Hello')</script>");
 $data = json_decode(file_get_contents('php://input'), true);
 
 if (isset($_GET["action"])) {
 	$action = $_GET["action"];
-	 
-
 
 	switch ($action) {
 		case "get_chat":
@@ -93,7 +91,6 @@ function delete_product_from_active_cart_request($data)
 
 function check_product_in_cart_request($data)
 {
-    
 	if (empty($data)) {
 		print_r("data is empty");
 		return;
@@ -102,8 +99,6 @@ function check_product_in_cart_request($data)
 	if (isset($data["product_id"]) && isset($data["customer_id"])) {
 		$product_id = $data["product_id"];
 		$customer_id = $data["customer_id"];
-		print_r($customer_id);
-        print_r($product_id);
 		
 		$cart_id = db_get_customer_active_cart_id($customer_id);
 		$product_item = db_get_product_in_active_cart($product_id, $cart_id);
@@ -113,8 +108,6 @@ function check_product_in_cart_request($data)
 		} else {
 			print_r(-1);
 		}
-		print_r($customer_id);
-        print_r($product_id);
 	}
 }
 

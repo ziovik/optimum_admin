@@ -1,5 +1,5 @@
 <?php
 
-$con = mysqli_connect("localhost","root","","opt_shop");
+$con = mysqli_connect("localhost","root","rjynbytyn","optimum");
 
 ?>

@@ -3,6 +3,8 @@ session_start();
 include("inc/db.php");
 include("inc/functions.php");
 include("inc/db_functions.php");
+include_once "db_objects/ProductItem.php";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +43,7 @@ include("inc/db_functions.php");
 <body>
 <?php include("inc/headers.php"); ?>
 
-<?php include("inc/navigation.php");  ?>
+<?php include("inc/navigation.php"); ?>
 
 <!-- HOME -->
 <div id="home">
@@ -86,10 +88,10 @@ include("inc/db_functions.php");
 						          where p.id='$product_id'";
 
 						$result = mysqli_query($con, $sql);
-						 if (!$result) {
-             printf("Error: %s\n", mysqli_error($con));
-            exit();
-           }/// helps to check error
+						if (!$result) {
+							printf("Error: %s\n", mysqli_error($con));
+							exit();
+						}/// helps to check error
 
 						while ($rows = mysqli_fetch_array($result)) {
 							$pro_id = $rows['id'];
@@ -107,9 +109,7 @@ include("inc/db_functions.php");
 						$rows = mysqli_fetch_array($result);
 						$dist_name = $rows['name'];
 
-					
 
-						
 					}
 					?>
 
@@ -130,7 +130,7 @@ include("inc/db_functions.php");
 									<i class="fa fa-star"></i>
 									<i class="fa fa-star-o empty"></i>
 								</div>
-								<span id="min_order"><?php echo $min_order; ?> </span> минимальное количество 
+								<span id="min_order"><?php echo $min_order; ?> </span> минимальное количество
 							</div>
 							<p>На складе:<span id="max_order"><?php echo $max_order; ?> </span></p>
 							<p><strong>Дистрибьютор:</strong> <?php echo $dist_name; ?></p>
@@ -144,7 +144,8 @@ include("inc/db_functions.php");
 									<input id="product_quantity" class="input" type="number" name="product_quantity"
 										   value="<?php echo $min_order; ?>">
 								</div>
-								<button  id="add_to_cart_btn" class="primary-btn add-to-cart" style="float: right; border-radius: 5px; padding-left: 2px;">
+								<button id="add_to_cart_btn" class="primary-btn add-to-cart"
+										style="float: right; border-radius: 5px; padding-left: 2px;">
 									<i class="fa fa-shopping-cart"></i>
 									<span>Добавить в корзину</span>
 								</button>
@@ -181,7 +182,7 @@ include("inc/db_functions.php");
 
 </div>
 <!-- FOOTER -->
- <?php include("inc/footer.php");  ?>
+<?php include("inc/footer.php"); ?>
 
 
 <script>
@@ -198,7 +199,6 @@ include("inc/db_functions.php");
 			'product_id': productId,
 			'customer_id': customerId
 		};
-	
 
 		$.ajax({
 			method: 'POST',
@@ -219,7 +219,7 @@ include("inc/db_functions.php");
 				}
 			},
 			error(data) {
-			    console.log(data);
+				console.log(data);
 			}
 		});
 	}
@@ -238,7 +238,7 @@ include("inc/db_functions.php");
 			success() {
 				alert('Продукт был добален в корзину');
 				console.log('Продукт был добален в корзину');
-				
+				location.reload();
 			}
 		});
 	}
@@ -256,7 +256,7 @@ include("inc/db_functions.php");
 			success() {
 				alert('Количество продука обновлено в корзине');
 				console.log('Продукт обновлен в корзине');
-				window.open("cart.php", "_self");
+				location.reload();
 			}
 		});
 	}
