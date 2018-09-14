@@ -38,7 +38,11 @@ if (isset($_POST['submit'])) {
 	$login = $_POST['login'];
 	$pass = $_POST['pass'];
 
-	$sel_customer = "select * from credentials where login='$login' AND password='$pass' ";
+	$sel_customer = "select 
+	                     crd.id as id
+	                from credentials crd 
+	                join customer c on c.credentials_id = crd.id
+	                where crd.login='$login' AND crd.password='$pass'  ";
 
 	$run_customer = mysqli_query($con, $sel_customer );
 
