@@ -131,6 +131,7 @@ create table company (
   inn  varchar(255) not null,
 
   primary key (id)
+  
 );
 
 insert into company (id, name, ogrn, inn) values
@@ -194,6 +195,7 @@ insert into customer (id, name, contact_id, region_id, address_id, credentials_i
 
 create table distributor (
   id             bigint not null auto_increment,
+  name           varchar(245), 
   contact_id     bigint,
   company_id     bigint not null,
   credentials_id int,
@@ -223,10 +225,10 @@ create table distributor (
     on update cascade
 );
 
-insert into distributor (id, contact_id, company_id, credentials_id, region_id, address_id) values
-  (1, 3, 1, 4, 4, 5), -- Apple (from San-Fransisco)
-  (2, 4, 2, 5, 5, 6), -- Avon (from Washington)
-  (3, 5, 3, 6, 5, 6); -- Reebok (from Washington)
+insert into distributor (id, name, contact_id, company_id, credentials_id, region_id, address_id) values
+  (1, 'apple', 3, 1, 4, 4, 5), -- Apple (from San-Fransisco)
+  (2, 'avon', 4, 2, 5, 5, 6), -- Avon (from Washington)
+  (3, 'reebok',  5, 3, 6, 5, 6); -- Reebok (from Washington)
 
 -- store place of products
 create table store (
