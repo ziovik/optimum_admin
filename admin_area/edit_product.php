@@ -169,32 +169,32 @@ if ($_GET['edit_product']) {
 			</tr>
 			<tr>
 				<td align="right"><b>Edit and Update Product Min Order:</b></td>
-				<td><input type="text" name="min_order" size="20" value="<?php echo $product_min_order; ?>" required></td>
+				<td><input type="text" name="min_order" size="20" value="<?php echo $product_min_order; ?>" ></td>
 			</tr>
 			<tr>
 				<td align="right"><b>Edit and Update Product Max Order:</b></td>
-				<td><input type="text" name="max_order" size="20" value="<?php echo $product_max_order; ?>" required></td>
+				<td><input type="text" name="max_order" size="20" value="<?php echo $product_max_order; ?>" ></td>
 			</tr>
 			<tr>
 				<td align="right"><b> Edit and Update Product Manufacturer:</b></td>
-				<td><input type="text" name="product_manufacturer" size="80" value="<?php echo $product_manufacturer; ?>" required></td>
+				<td><input type="text" name="product_manufacturer" size="80" value="<?php echo $product_manufacturer; ?>" ></td>
 			</tr>
 			
 			<tr>
 				<td align="right"><b>Edit and Update Product Discount:</b></td>
-				<td><input type="text" name="discount" size="80" value="<?php echo $discount; ?>" required></td>
+				<td><input type="text" name="discount" size="80" value="<?php echo $discount; ?>" ></td>
 			</tr>
 			<tr>
 				<td align="right"><b>Edit and Update Product Expiring Date:</b></td>
-				<td><input type="text" name="expires" size="40" value="<?php echo $expires; ?>" required></td>
+				<td><input type="text" name="expires" size="40" value="<?php echo $expires; ?>" ></td>
 			</tr>
 				<tr>
 				<td align="right"><b>Edit and Update Product Licence:</b></td>
-				<td><input type="text" name="licence" size="40" value="<?php echo $licence; ?>" required></td>
+				<td><input type="text" name="licence" size="40" value="<?php echo $licence; ?>" ></td>
 			</tr>
 				<tr>
 				<td align="right"><b>Edit and Update Product code:</b></td>
-				<td><input type="text" name="code" size="40" value="<?php echo $code; ?>" required></td>
+				<td><input type="text" name="code" size="40" value="<?php echo $code; ?>" ></td>
 			
 			<tr align="center">
 				
@@ -233,7 +233,7 @@ $result = mysqli_query($con, $update_store_item);
   
   	
 
-// use ur databes to cross check exactly one by one as in table
+// use ur database to cross check exactly one by one as in table
    $update_product = "update product set  name='$product_name', 
                       manufacturer='$product_manufacturer', expires='$expires', 
                        
