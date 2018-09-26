@@ -21,6 +21,7 @@ if (isset($_SESSION['distributor_id'])) {
         $get = "select 
                      so.id as order_id,
                      com.name as company_name,
+                     d.name as distributor_name,
                      c.name as customer_name,
                      con.email as customer_email,
                      con.telephone as customer_telephone,
@@ -61,6 +62,7 @@ if (isset($_SESSION['distributor_id'])) {
         <div style="text-align:center;">
 
        <h2 style="text-align:center;">' . $rows['company_name'] . ' </h2 ><h4 >заказ № ' . $order_id . '</h4>
+       
        </div>
        <div>
        <p>От "' . $rows['customer_name'] . '" </p>
