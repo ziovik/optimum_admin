@@ -17,6 +17,12 @@ class Product
 	public $distributor_id;
 	public $sub_category_id;
 
+	/*and put these field into constructor, und?yes*/
+	public $one_another_filed;
+	public $stupid_filed;
+	public $fucken_filed;
+
+
 	/**
 	 * Product constructor.
 	 * @param $id
