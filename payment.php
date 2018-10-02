@@ -1,6 +1,7 @@
 <?php  
    session_start();
    include("inc/functions.php");
+   include_once "db_objects/ProductItem.php";
    
    //for not acceessing this page by another person who is not in admin
    

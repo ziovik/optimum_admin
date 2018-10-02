@@ -1,10 +1,10 @@
-<table width="700px" align="center">
+<table width="700px" align="center" >
 	<tr align="center">
 		<h2 style="color: #800080; text-align: center;">Клиенты</h2>
 
 		<th style="width: 100px;">S/N</th>
-		<th>Имя клиента</th>
-		<th style="width: 100px;">Смотреть</th>
+		<th style="text-align: center;">Имя клиента</th>
+		<th style="width: 100px; text-align: center;">Смотреть</th>
 	</tr>
 
 	<?php
@@ -38,25 +38,30 @@
 
 				$customer_name = $rows['customer_name'];
 				$customer_id = $rows['customer_id'];
+
 				$i++;
+
+
 
 				?>
 
-				<tr>
+				<tr style="text-align: center">
 					<td><?php echo $i; ?></td>
-					<td><?php echo $customer_name; ?></td>
-					<td>
+					<td style="text-align: center"><?php echo $customer_name; ?></td>
+					<td style="text-align: center">
 						<!-- Cart -->
-						<li class="header-cart dropdown default-dropdown">
+						<li style="text-align: center" class="header-cart dropdown default-dropdown">
 
 							<div class="header-btns-icon">
-								<a href="index1.php?customer_id=<?php echo $customer_id; ?>
+                                <input id="customer_id" type="hidden" value="<?php echo $customer_id; ?>">
+								<a  href="index1.php?customer_id=<?php echo $customer_id; ?>
 								&customer_name=<?php echo $customer_name; ?>">
 									<i class='fa fa-envelope faa-shake animated fa-4x' style="font-size:50px;
 									color:red; float: right;  "></i>
 								</a>
-								<span class="qty" style="width: 20px; height: 20px;">1</span>
+<!--								<span class="qty" style="width: 20px; height: 20px;">1</span>-->
 							</div>
+
 
 
 						</li>
@@ -73,3 +78,7 @@
 	?>
 
 </table>
+
+
+
+

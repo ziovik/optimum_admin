@@ -78,3 +78,4 @@ if (isset($_GET['action']) && isset($_GET['customer_id']) && isset($_GET['custom
 	usort($messages, "date_comparator");
 	show_messages($messages);
 }
+

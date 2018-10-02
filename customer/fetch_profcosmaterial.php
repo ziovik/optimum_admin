@@ -26,7 +26,7 @@ $query = "
               join company cm on cm.id = d.company_id
               join store_item st on st.product_id = p.id
       
-     where c.id = '$customer_id'";
+     where c.id = '$customer_id' and d.id = '2'";
 $run = mysqli_query($con, $query);
 $row = mysqli_fetch_array($run);
 

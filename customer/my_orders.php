@@ -86,7 +86,7 @@
 						<div class="btn-group">
 							<button class="btn btn-primary dropdown-toggle btn-lg" data-toggle="dropdown"
 									aria-haspopup="true" aria-expanded="false" style="width: 100px;"
-									onclick="setCurrentValues(<?php echo $distributor_id; ?>, '<?php echo
+									onclick="setCurrentValues('<?php echo $distributor_id; ?>', '<?php echo
 									$company_name; ?>')">
 								<span class="fa fa-comments pull-left">Chat</span>
 							</button>

@@ -110,8 +110,25 @@ if (!isset($_SESSION['customer_id'])) {
 						<tr>
 							<td colspan="3" align="right">Итого:</td>
 							<td align="right"><?php echo number_format($total, 2); ?> руб.</td>
-							<td></td>
+							<td>
+
+                                <form action="" method="post" enctype="multipart/form-data" style="padding-left: 300px;">
+                                    <tr>
+                                        <td><input type="hidden" name="item_name" value="<?php echo $product_name; ?>"></td>
+                                        <td><input type="hidden" name="amt" value="<?php echo $total; ?>"></td>
+                                        <td><input type="hidden" name="currency" value="Руб"></td>
+                                        <td><input type="hidden" name="return" value="payment_success.php"></td>
+                                        <td><input type="hidden" name="cancel_return" value="payment_cancel.php"></td>
+                                    </tr>
+                                    <tr >
+
+                                        <td><button  class="btn next-btn" name="send_distributor">отправить заказ</button></td>
+                                    </tr>
+                                </form>
+
+                            </td>
 						</tr>
+
 					</table>
 				</div>
 				<br><br>
@@ -121,8 +138,7 @@ if (!isset($_SESSION['customer_id'])) {
 				<div class="row">
 					<!-- section -->
 					<div class="section">
-						<input class="btn next-btn" type="submit" value="Выписываться"
-							   onClick="window.location = 'payment.php';">
+
 						<br>
 					</div>
 				</div>
@@ -153,3 +169,97 @@ if (!isset($_SESSION['customer_id'])) {
 			});
 		}
 	</script>
+
+    <?php
+    if (isset($_POST['send_distributor'])) {
+        if (isset($_SESSION['customer_id'])) {
+            $customer_id = $_SESSION['customer_id'];
+
+
+            $order_status = 'inactive';
+
+
+            //getting cart_id
+
+            $sel_cart ="select * from cart where customer_id = '$customer_id' AND status = 'active'";
+
+
+            $run_cart = mysqli_query($con, $sel_cart);
+
+            $row = mysqli_fetch_array($run_cart);
+
+            $cart_id = $row['id'];
+
+
+            $check_product_item = "select * from product_item where cart_id = '$cart_id'";
+
+            $run_check_item = mysqli_query($con, $check_product_item);
+
+            $count = mysqli_num_rows($run_check_item);
+
+            if($count == 0){
+
+                echo "<script>alert('НЕТ продукта в корзине')</script>";
+
+            }else{
+
+                //inserting the orders  table
+
+                $insert_orders ="insert into simple_order (registration_date, cart_id) values (NOW(), '$cart_id')";
+
+                $run_orders = mysqli_query($con, $insert_orders);
+
+
+
+
+                $update_onscreen_status = "update product_item set onscreen_status = 'Отправил' where cart_id = '$cart_id'";
+                $run = mysqli_query($con, $update_onscreen_status);
+
+
+
+
+                $update_cart_status = "update cart set status = 'inactive' where id = '$cart_id'";
+                $run_cart = mysqli_query($con, $update_cart_status);
+
+
+
+                $insert_customer_cart = "insert into cart (customer_id,status) values ('$customer_id','active')";
+                $run_customer_cart = mysqli_query($con, $insert_customer_cart);
+
+
+
+
+                //removing product_item to empty
+                // $cart_status = 'inactive';
+                // $empty_cart = "delete from product_item  where cart_id  in
+                //(select id from cart where status like '%$cart_status%')";
+
+
+                //$run_cart = mysqli_query($con,$empty_cart);
+                $get_customer_name = "select * from customer where id = '$customer_id'";
+                $run_name = mysqli_query($con, $get_customer_name);
+                $row = mysqli_fetch_array($run_name);
+                $customer_name = $row['name'];
+
+
+                if ($run_orders) {
+                    echo "<script>alert('".$row['name'].""."   Ваш заказ прошел успешно. Пожалуйста, дождитесь подтверждения от Дистрибьютора.')</script>";
+                    echo "<script>window.open('optimum_beauty.php','_self')</script>";
+
+
+                }else{
+                    echo "<h2>Ваш заказ был прерван</h2><br>";
+                    echo "<a href='optimum_beauty.php'>Вернуться к системy</a>";
+                }
+            }
+        }}
+
+    ?>
+
+    <br>
+    <?php
+    if (isset($_GET['order_success'])) {
+        include("order_success.php");
+    }
+    ?>
+

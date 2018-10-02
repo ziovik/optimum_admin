@@ -42,7 +42,7 @@ if (isset($_POST['submit'])) {
 	                     crd.id as id
 	                from credentials crd 
 	                join customer c on c.credentials_id = crd.id
-	                where crd.login='$login' AND crd.password='$pass'  ";
+	                where crd.login='$login' AND crd.password='$pass' ";
 
 	$run_customer = mysqli_query($con, $sel_customer );
 
@@ -53,7 +53,7 @@ if (isset($_POST['submit'])) {
 		exit();
 	}else{
 
-             echo "<script>alert('Вы успешно вошлли в систему')</script>";  
+//             echo "<script>alert('Вы успешно вошлли в систему')</script>";  
 			echo "<script>window.open('../optimum_beauty.php?logged_in=Вы успешно вошлли в систему','_self')</script>";
 	}
 

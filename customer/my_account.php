@@ -2,6 +2,7 @@
    session_start();
    include("../inc/db.php");
    include("../inc/functions.php");
+   include_once "../db_objects/ProductItem.php";
    
    //for not acceessing this page by another person who is not in admin
    
@@ -91,7 +92,7 @@
                         
                         ?>
                      <li><a href="my_account.php?active_orders">Активный заказ  <i class="fa fa-spinner fa-spin" style="font-size:24px"></i></a></li>
-                     <li><a href="my_account.php?my_history">История заказов  <i class="fa fa-history" style="font-size:26px"></i></a></li>
+                     <li><a href="my_account.php?view_orders_history">История заказов  <i class="fa fa-history" style="font-size:26px"></i></a></li>
                      <li><a href="logout.php">Выити  <i class="fa fa-sign-out" style="font-size:24px"></i></a></li>
                   </ul>
                </div>
@@ -130,12 +131,15 @@
                      if (isset($_GET['my_orders'])) {
                      	include("my_orders.php");
                      }
-                      if (isset($_GET['my_history'])) {
-                     	include("my_history.php");
+                      if (isset($_GET['view_orders_history'])) {
+                     	include("view_orders_history.php");
                      }
                       if (isset($_GET['active_orders'])) {
                      	include("active_orders.php");
                      }
+                      if (isset($_GET['check_order_history_details'])) {
+                          include("check_order_history_details.php");
+                      }
                      if (isset($_GET['chat'])) {
                      	include("chat.php");
                      }

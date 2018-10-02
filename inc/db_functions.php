@@ -6,7 +6,12 @@
  * Time: 11:14 PM
  */
 
+
 include ("db.php");
+include($_SERVER['DOCUMENT_ROOT']."/db_objects/DistributorMessage.php");
+include ($_SERVER['DOCUMENT_ROOT']."/db_objects/CustomerMessage.php");
+include ($_SERVER['DOCUMENT_ROOT']."/db_objects/ProductItem.php");
+
 
 
 function db_create_cart_for_customer($customer_id)
@@ -34,8 +39,8 @@ function db_insert_customer_message($customer_id, $distributor_id, $message, $me
 {
 	global $con;
 	$sql = "
-insert into customer_chat (customer_id, distributor_id, message, message_date)
-values ('$customer_id', '$distributor_id', '$message', '$message_date')";
+insert into customer_chat (customer_id, distributor_id, message, message_date,status)
+values ('$customer_id', '$distributor_id', '$message', '$message_date','unread')";
 	mysqli_query($con, $sql);
 }
 

@@ -27,7 +27,8 @@ create table role (
 
 insert into role values
   (1, 'admin'),
-  (2, 'user');
+  (2, 'user'),
+  (3, 'customer');
 
 create table credentials (
   id       int                not null auto_increment,
@@ -483,7 +484,8 @@ create table customer_chat (
 
   distributor_id bigint   not null,
   message        varchar(255),
-  message_date   datetime not null
+  message_date   datetime not null,
+  status        varchar(255)
 );
 
 create table distributor_chat (

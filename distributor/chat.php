@@ -44,14 +44,12 @@ $distributor_name = $row['company_name'];
 							  id="message" style="width: 300px;">
 </textarea>
 				</div>
-				<!--<div class="col-xs-2 pb-btn-circle-div">
-				<button type="submit" class="btn btn-primary btn-circle pb-chat-btn-circle" style="width: 50px;"><span class="fa fa-chevron-right"></span></button>
-				</div>-->
+				
 			</div>
 		</div>
 	</div>
 </div>
-
+<div id="result"></div>
 
 <!--chat end-->
 

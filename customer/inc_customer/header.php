@@ -73,7 +73,7 @@
                             </div>
                             <ul class="custom-menu">
                                 <li><a href="index.php"><i class="fa fa-user-o"></i> Личный кабинет </a></li>
-                                <li><a href="../payment.php"><i class="fa fa-check"></i> Выписываться</a></li>
+
                                 <li><a href="logout.php"><i class="fa fa-unlock-alt"></i>Выити</a></li>
                             </ul>
                         </li>
@@ -82,29 +82,19 @@
                         <li class="header-cart dropdown default-dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                 <div class="header-btns-icon">
-                                    <i class="fa fa-shopping-cart"></i>
+                                    <i onClick="goCart()" class="fa fa-shopping-cart"></i>
                                     <span class="qty"><?php total_items(); ?></span>
                                 </div>
-                                <strong class="text-uppercase">Мои Заказы:</strong>
+                                <strong onClick="goCart()" class="text-uppercase">Мои Заказы:</strong>
+                                <script type="text/javascript">
+                                    function goCart() {
+                                        window.location = "../customer_orders.php";
+                                    }
+                                </script>
                                 <br>
                                 <span><?php total_price() ?></span>
                             </a>
-                            <div class="custom-menu">
-                                <div id="shopping-cart">
-                                    <div class="shopping-cart-list">
-                                    </div>
-                                    <div class="shopping-cart-btns">
-                                        <div class="shopping-cart-btns">
-                                            <a href="../cart.php">
-                                            <button class="main-btn">заказы</button>
-                                            </a>
-                                            <a href="../payment.php">
-                                            <button class="primary-btn">Выписываться <i class="fa fa-arrow-circle-right"></i>
-                                            </button>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+
                         </li>
                         <!-- /Cart -->
                         <!-- Mobile nav toggle-->

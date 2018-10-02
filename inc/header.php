@@ -110,28 +110,16 @@ include("db.php");
 								<i class="fa fa-shopping-cart"></i>
 								<span id="cart_items_count" class="qty"><?php total_items(); ?></span>
 							</div>
-							<strong class="text-uppercase">Мои Заказы:</strong>
+                            <strong onClick="goCart()" class="text-uppercase">Мои Заказы:</strong>
+                            <script type="text/javascript">
+                                function goCart() {
+                                    window.location = "customer_orders.php";
+                                }
+                            </script>
 							<br>
 							<span><?php total_price() ?></span>
 						</a>
-						<div class="custom-menu">
-							<div id="shopping-cart">
-								<div class="shopping-cart-list">
 
-								</div>
-								<div class="shopping-cart-btns">
-									<a href="../cart.php">
-										<button class="main-btn">заказы</button>
-									</a>
-									<a href="../payment.php">
-                                       <button class="primary-btn">Выписываться <i class="fa fa-arrow-circle-right"></i>
-                                      </button>
-                                    </a>
-
-
-								</div>
-							</div>
-						</div>
 					</li>
 					<!-- /Cart -->
 

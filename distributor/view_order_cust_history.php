@@ -1,3 +1,5 @@
+
+<br><br>
 <table width="100%" align="center" >
 	<tr align="center">
 		<h2 style="text-align: center;">Посмотреть все истории заказов здесь</h2>
@@ -35,7 +37,9 @@
 
                      com.name as company_name,
                      so.registration_date as order_date,
+                     so.id as order_id,
                      c.name as customer_name,
+                     c.id as customer_id,
                      ct.email as customer_email,
                      ct.telephone as customer_telephone,
                      r.name as customer_region,
@@ -87,12 +91,13 @@
                    $status = $rows['status'];
                   $order_date = $rows['order_date'];
                   $customer_name = $rows['customer_name'];
-                  
+                  $customer_id = $rows['customer_id'];
                   $product_name = $rows['product_name'];
                   $pro_item_id = $rows['product_id'];
                   
                   $product_price = $rows['price'];
                   $quantity = $rows['quantity'];
+                  $order_id = $rows['order_id'];
 
 
                                 $i++;
@@ -122,5 +127,40 @@
 <br>
 
 
+
+<div style="float: right;">
+    <form method="post" action="excel_history.php?order_id=<?php echo $order_id ?> & customer_id=<?php echo $customer_id ?>">
+        <input type="submit" id="btnID"  name="export_excel_history" class="btn btn-success" value="Печать Заказы">
+    </form>
+</div>
+
+<?php
+  include("../inc/db.php");
+
+  if (isset($_SESSION['distributor_id']))
+      $dist_id = $_SESSION['distributor_id'];
+      $sql = "select * from distributor where id = '$dist_id'";
+      $result =mysqli_query($con, $sql);
+      $rows = mysqli_fetch_array($result);
+      $package = $rows['package'];
+
+
+
+?>
+<script>
+    function myFunction() {
+        var package = "<?php echo $package; ?>"
+
+
+        if (package == 'not_full') {
+            document.getElementById("btnID").disabled = true;
+        }
+        else{
+            document.getElementById("btnID").disabled = false;
+        }
+    }
+    window.addEventListener('load',myFunction);
+
+</script>
 
 

@@ -1,3 +1,14 @@
+
+<div style="float: left;">
+    <form method="post" action="excel_history.php?order_id=<?php echo $order_id ?> & distributor_id=<?php echo $distributor_id ?>">
+        <input type="submit" id="btnID" name="export_excel_history" class="btn btn-success" value="Печать Заказы">
+    </form>
+</div>
+
+<script>
+    document.getElementById("btnID").disabled = true;
+</script>
+
 <table width="800" align="center" >
    
          <h2 style="text-align: center;">История заказов</h2>
@@ -19,8 +30,9 @@
       
       // this is for customer details
        $customer_id = $_SESSION['customer_id'];
-      
-      
+       if (isset($_GET['check_order_history_details'])){
+        $order_id =$_GET['check_order_history_details'];
+
       
        $i= 0;
       
@@ -30,6 +42,7 @@
                           pt.onscreen_status as onscreen_status,
                           pt.product_id as product_id,
                           so.registration_date as order_date,
+                          so.id as order_id,
                           c.id as cart_id,
                           pt.quantity as qty
       
@@ -37,17 +50,16 @@
                            cart c
                            join product_item pt on pt.cart_id = c.id
                            join simple_order so on so.cart_id = pt.cart_id
-                      where c.customer_id = '$customer_id' AND (pt.onscreen_status = 'Принял'  OR pt.onscreen_status = 'Отказ') ";
+                      where c.customer_id = '$customer_id' and so.id='$order_id' ";
       
          $run_cart = mysqli_query($con, $get_cart);
       
          while ($row_cart = mysqli_fetch_array($run_cart)) {
              $onscreen_status = $row_cart['onscreen_status'];
-            $product_id = $row_cart['product_id'];
-            $cart_id =$row_cart['cart_id'];
-            $order_date = $row_cart['order_date'];
-      
-           $qty = $row_cart['qty'];
+             $product_id = $row_cart['product_id'];
+             $cart_id =$row_cart['cart_id'];
+             $order_date = $row_cart['order_date'];
+             $qty = $row_cart['qty'];
       
          $get_pro ="select 
                           p.name as name,
@@ -90,5 +102,6 @@
       <td><?php echo $onscreen_status; ?></td>
       <td><?php echo $order_date; ?></td>
    </tr>
-   <?php } } }}?>
+   <?php } } }} }?>
 </table>
+

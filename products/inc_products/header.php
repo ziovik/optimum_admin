@@ -72,38 +72,29 @@
                         </div>
                         <ul class="custom-menu">
                            <li><a href="../customer/index.php"><i class="fa fa-user-o"></i> личный кабинет</a></li>
-                           <li><a href="../payment.php"><i class="fa fa-check"></i>Выписываться</a></li>
+
                            <li><a href="../index.php"><i class="fa fa-unlock-alt"></i> Выйти</a></li>
                         </ul>
                      </li>
                      <!-- /Account -->
                      <!-- Cart -->
-                     <li class="header-cart dropdown default-dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                           <div class="header-btns-icon">
-                              <i class="fa fa-shopping-cart"></i>
-                              <span class="qty"><?php total_items(); ?></span>
-                           </div>
-                           <strong class="text-uppercase">Мои Заказы:</strong>
-                           <br>
-                           <span><?php total_price() ?></span>
-                        </a>
-                        <div class="custom-menu">
-                           <div id="shopping-cart">
-                              <div class="shopping-cart-list">
+                      <li class="header-cart dropdown default-dropdown">
+                          <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                              <div class="header-btns-icon">
+                                  <i onClick="goCart()" class="fa fa-shopping-cart"></i>
+                                  <span class="qty"><?php total_items(); ?></span>
                               </div>
-                              <div class="shopping-cart-btns">
-                                 <a href="../cart.php">
-                                 <button class="main-btn">заказы</button>
-                                 </a>
-                                 <a href="../payment.php">
-                                 <button class="primary-btn">Выписываться <i class="fa fa-arrow-circle-right"></i>
-                                 </button>
-                                 </a>
-                              </div>
-                           </div>
-                        </div>
-                     </li>
+                              <strong onClick="goCart()" class="text-uppercase">Мои Заказы:</strong>
+                              <script type="text/javascript">
+                                  function goCart() {
+                                      window.location = "../customer_orders.php";
+                                  }
+                              </script>
+                              <br>
+                              <span><?php total_price() ?></span>
+                          </a>
+
+                      </li>
                      <!-- /Cart -->
                      <!-- Mobile nav toggle-->
                      <li class="nav-toggle">

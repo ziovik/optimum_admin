@@ -164,6 +164,9 @@ else{
 							   if (isset($_GET['edit_customer'])) {
 							  	include("edit_customer.php");
 							  }
+                            if (isset($_GET['edit_distributor'])) {
+                                include("edit_distributor.php");
+                            }
 							  if (isset($_GET['view_distributor'])) {
 							  	include("view_distributor.php");
 							  }

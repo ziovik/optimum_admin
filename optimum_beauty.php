@@ -3,6 +3,7 @@
     session_start();
     include 'inc/db.php';
     include 'inc/functions.php';
+    include_once "db_objects/ProductItem.php";
     
     //for not acceessing this page by another person who is not in admin
     
@@ -421,8 +422,8 @@
                                 </a>
                             </div>
                             <!-- /footer logo -->
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                                labore et dolore magna
+                            <p style="font-size:13px;">Cоздание информационных баз и программных продуктов для автоматизации
+                                процесса заказа конечными клиентами продукции поставщиков.
                             </p>
                             <!-- footer social -->
                             <ul class="footer-social">
@@ -468,7 +469,10 @@
                     <div class="col-md-3 col-sm-6 col-xs-6">
                         <div class="footer">
                             <h3 class="footer-header">Stay Connected</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+                            <p>Почтовый адрес: 305016, Курская область, г. Курск,
+                                ул. Щепкина, д.22, литер B, офис 205.
+                                <br>Телефон: 8 (800) 500-68-07
+                            </p>
                             <form>
                                 <div class="form-group">
                                     <input class="input" placeholder="Enter Email Address">

@@ -131,40 +131,38 @@ function total_price()
 		$customer_id = $_SESSION['customer_id'];
 
 
-		$sel_price = "select 
-                         pt.product_id as product_id
 
-                        from 
-                           cart c 
-                           join product_item pt on c.id = pt.cart_id
-                        where c.customer_id = '$customer_id' AND c.status = 'active'";
+        $sql = "select p.*, pd.name as product_name, st.price as product_price from product_item p
+join cart c on p.cart_id = c.id
+join product pd on pd.id = p.product_id
+join store_item st on st.product_id = pd.id
+where c.customer_id = '$customer_id' and c.status = 'active'";
+        $result = mysqli_query($con, $sql);
 
-		$run_price = mysqli_query($con, $sel_price);
+        $items = array();
 
-		while ($p_price = mysqli_fetch_array($run_price)) {
-			$pro_id = $p_price['product_id'];
+        while ($rows = mysqli_fetch_array($result)) {
+            $item = new ProductItem(
+                $rows["id"],
+                $rows["product_id"],
+                $rows["cart_id"],
+                $rows["quantity"],
+                $rows["product_name"],
+                $rows["product_price"]);
+            array_push($items, $item);
+        }
+        foreach ($items as $item) {
+            $total += $item->quantity * $item->product_price;
+        }
 
-			$pro_price = "select 
-			                 st.price as price 
-			               from product p
-			                    join store_item st on st.product_id = p.id
-			               where p.id ='$pro_id'";
 
-			$run_pro_price = mysqli_query($con, $pro_price);
-
-			while ($pp_price = mysqli_fetch_array($run_pro_price)) {
-				$product_price = array($pp_price['price']); // getting all price
-
-				$values = array_sum($product_price);  // sum the price
-
-				$total += $values;
-
-			}
-		}
 	}
 
 	echo $total . "(руб)";
 }
+
+
+
 
 
 // virtual table to add cart

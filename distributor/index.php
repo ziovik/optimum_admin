@@ -2,7 +2,7 @@
 
 session_start();
 include("../inc/db.php");
-
+include("inc_distributor/functions.php");
 
 if (!isset($_SESSION['distributor_id'])) {
 	echo "<script>window.open('login.php?not_dist=sign in!','_self')</script>";
@@ -127,24 +127,40 @@ else{
 			<div class="pull-right">
 				<ul class="header-btns">
 					<!-- Account -->
-					<li class="header-account dropdown default-dropdown">
-						<div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
-							<div class="header-btns-icon">
-								<i class="fa fa-user-o"></i>
-							</div>
-							<strong class="text-uppercase"> Личный кабинет <i class="fa fa-caret-down"></i></strong>
-						</div>
 
-
-						<ul class="custom-menu">
-							<li><a href="my_account.php"><i class="fa fa-user-o"></i> Личный кабинет</a></li>
-
-							<li><a href="logout.php"><i class="fa fa-unlock-alt"></i> Выити</a></li>
-
-						</ul>
-					</li>
 					<!-- /Account -->
+                    <!-- Cart -->
+                    <li class="header-cart dropdown default-dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                            <div class="header-btns-icon">
+                                <i class="fa fa-envelope-o" ></i>
+                                <span class="qty"><?php echo message_count(); ?></span>
+                            </div>
+                            <strong class="text-uppercase">Сообщение</strong>
+                            <br>
+                            <span></span>
+                        </a>
+                        <div class="custom-menu">
+                            <div id="shopping-cart">
+                                <div class="shopping-cart-list">
 
+                                </div>
+                                <div class="shopping-cart-btns">
+                                    <a href="index.php">
+                                        <button class="main-btn">Личный Кабинет</button>
+                                    </a>
+                                    <a href="../logout.php">
+                                        <button class="primary-btn">Выйти <i class="fa fa-arrow-circle-right"></i>
+                                        </button>
+                                    </a>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- /Cart -->
 
 					<!-- Mobile nav toggle-->
 					<li class="nav-toggle">

@@ -1,7 +1,11 @@
+<script>
+    let currProId = null, currProName = null;
+</script>
 <?php
    session_start();
    include("../inc/db.php");
    include("../inc/functions.php");
+   include_once "../db_objects/ProductItem.php";
    
    //for not acceessing this page by another person who is not in admin
    
@@ -35,6 +39,7 @@
       <link type="text/css" rel="stylesheet" href="../css/style.css"/>
       <link type="text/css" rel="stylesheet" href="../css/table.css"/>
       <link type="text/css" rel="stylesheet" href="../css/checkout_style.css"/>
+       <link type="text/css" rel="stylesheet" href="../css/modal.css"/>
       <!--table resp-->
       <link rel="stylesheet" href="../css/rwd-table.min.css">
       
@@ -85,7 +90,7 @@
                   <br>
                   <h4>Выберите количество строк</h4>
                   <div class="form-group">
-                     <select name="state" id="maxRows" class="form-control" style="width: 150px;">
+                     <select name="state" id="maxRows" class="form-control" style="width: 150px; height: 50px;">
                         <option value="5000">Показать все...</option>
                         <option value="5">5</option>
                         <option value="10">10</option>
@@ -162,7 +167,11 @@
                               <th data-priority="1"
                                  style="background: white; color: #400040;"><?php echo $pro_dist ?></th>
                               <th data-priority="2" style="background: white; color: #400040; width: 500px;">
-                                 <a href="../details.php?pro_id=<?php echo $pro_id ?>"><?php echo $pro_name ?></a>
+
+                                  <a href="#"  style="max-width: 500px;" data-toggle="modal"
+                                     data-target="#myModal"> <?php echo $pro_name ?>
+                                  </a>
+
                               </th>
                               <th data-priority="3"
                                  style="background: white; color: #400040;"><?php echo $pro_manu ?></th>
@@ -196,6 +205,98 @@
          </div>
          <!-- /container -->
       </div>
+
+      <div class="modal fade"  id="myModal" role="dialog">
+          <!-- modal dialog -->
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <!-- modal header -->
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <div class="mohe">
+                          <h4 class="modal-title"> Подробность</h4>
+                      </div>
+                  </div>
+                  <!-- end modal header-->
+                  <!-- modal body -->
+                  <div class="modal-body">
+                      <form role="form" action="#" method="post">
+                          <fieldset>
+                              <legend><h2 class="product-name" style="text-align: justify; width:100%;font-size: 16px;"><?php echo $pro_name; ?></h2></legend>
+                              <div class="form-group col-xs-6">
+                                  <label for="name"> Цена: <?php echo number_format($pro_price, 2); ?> руб.</label>
+
+                              </div>
+
+                              <div class="form-group col-xs-6">
+                                  <label for="email"> минимальное количество: <?php echo $min_order; ?> </label>
+                                  <div>
+                                      <div class="product-rating">
+                                          <i class="fa fa-star"></i>
+                                          <i class="fa fa-star"></i>
+                                          <i class="fa fa-star"></i>
+                                          <i class="fa fa-star"></i>
+                                          <i class="fa fa-star-o empty"></i>
+                                      </div>
+
+                                  </div>
+                              </div>
+
+                              <div class="form-group col-xs-6">
+                                  <label for="tel"> Количество:</label>
+                                  <div class="qty-input">
+
+                                      <input id="product_id" type="hidden" name="product_id" value="<?php echo $pro_id;
+                                      ?>">
+                                      <input id="product_quantity" class="input" type="number" name="product_quantity"
+                                             value="<?php echo $min_order;?>">
+
+                                  </div>
+                              </div>
+
+                              <div class="form-group col-xs-6">
+                                  <label for="text"> Дистрибьютор: <?php echo $dist_name; ?></label>
+
+                              </div>
+                          </fieldset>
+
+                          <fieldset>
+                              <legend> Производитель/Страна пройзводителя:</legend>
+                              <div class="form-group col-xs-12">
+                                  <div class="product-btns">
+
+
+                                  </div>
+
+                              </div>
+
+                              <div class="form-group col-xs-12">
+                                  <label for="comment"> Примечание: </label>
+                                  <textarea class="form-control" rows="5" id="comment"></textarea>
+                              </div>
+                          </fieldset>
+                      </form>
+                  </div>
+                  <!-- end modal body -->
+                  <!-- modal footer-->
+                  <div class="modal-footer">
+                      <div class="mohe">
+
+                          <button type="submit" class="btn btn-default btn-md btn-sm" data-dismiss="modal" style="width: 200px;">Добавить в корзину</button>
+                          <button type="submit" class="btn btn-default btn-md btn-sm" data-dismiss="modal"> отмена</button>
+                      </div>
+                  </div>
+                  <!-- end modal footer -->
+              </div>
+              <!-- end modal content-->
+          </div>
+          <!-- end modal dialog-->
+      </div>
+
+
+
       <!-- /section -->
      <?php include("inc_products/footer.php") ; ?>
      <?php } ?>
+
+
