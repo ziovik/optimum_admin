@@ -1,6 +1,7 @@
 <script>
     let currProId = null, currProName = null;
     function loadProductData(product) {
+		$('#product_id').val(product.id);
         $('#product_name').text(product.name); /*name - is the field in Product class*/
         $('#product_price').text(product.price); /*price is the same*/
         $('#product_manufacturer').text(product.manufacturer);
@@ -263,7 +264,7 @@ if (!isset($_SESSION['customer_id'])) {
 
                                     <input id="product_id" type="hidden" name="product_id" value="<?php echo $pro_id;
                                     ?>">
-                                    <input style="width: 100px;" id="min_quantity" class="input" type="number" name="product_quantity"
+                                    <input style="width: 100px;" id="product_quantity" class="input" type="number" name="product_quantity"
                                            value="1">
                                 </div>
                             </div>
@@ -417,6 +418,8 @@ if (!isset($_SESSION['customer_id'])) {
         $(document).ready(function () {
             $('#add_to_cart_btn').on('click', function () {
                 let productId = $('#product_id').val();
+
+				alert(productId);
 
                 if (validateProductQuantity()) {
                     checkProductInCart(productId);

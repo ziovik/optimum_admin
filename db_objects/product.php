@@ -5,7 +5,6 @@
  * Date: 8/3/2018
  * Time: 11:17 PM
  */
-
 class Product
 {
 	public $id;
@@ -16,12 +15,8 @@ class Product
 	public $price;
 	public $distributor_id;
 	public $sub_category_id;
-
-	/*and put these field into constructor, und?yes*/
-	public $one_another_filed;
-	public $stupid_filed;
-	public $fucken_filed;
-
+	public $min_quantity;
+	public $distributor;
 
 	/**
 	 * Product constructor.
@@ -33,8 +28,10 @@ class Product
 	 * @param $price
 	 * @param $distributor_id
 	 * @param $sub_category_id
+	 * @param $min_quantity
+	 * @param $distributor
 	 */
-	public function __construct($id, $name, $description, $manufacturer, $keyword, $price, $distributor_id, $sub_category_id)
+	public function __construct($id, $name, $description, $manufacturer, $keyword, $price, $distributor_id, $sub_category_id, $min_quantity, $distributor)
 	{
 		$this->id = $id;
 		$this->name = $name;
@@ -44,7 +41,9 @@ class Product
 		$this->price = $price;
 		$this->distributor_id = $distributor_id;
 		$this->sub_category_id = $sub_category_id;
+		$this->min_quantity = $min_quantity;
+		$this->distributor = $distributor;
 	}
-
-
 }
+
+
