@@ -1,6 +1,5 @@
-<script>
-    let currProId = null, currProName = null;
-</script>
+
+
 <?php
 session_start();
 
@@ -173,76 +172,13 @@ $product_id = $row['product_id'];
 
 						<td data-priority='1' style='background: white; color: #400040;'><?php echo $pro_dist ?></td>
 						<td data-priority='2' style='background: white; color: #400040; width: 400px;'>
-                            <!--<a
-									href='details.php?pro_id=<?php echo $pro_id ?>'
-									style="max-width: 500px;"><?php echo $pro_name ?>
-                            </a>-->
-
-
-
-                            <a href="#" id="product_<?php echo $pro_id; ?>" onclick="modalPop(<?php echo
-                            $pro_id; ?>)" style="max-width: 500px;" data-toggle="modal"
-                                    data-target="#myModal"> <?php echo $pro_name ?>
+                            <a href="#" style="max-width: 500px;" data-toggle="modal"
+                               data-target="#myModal"
+                               onclick="onProductClick(<?php echo $pro_id ?>)">
+                                <?php echo $pro_name ?>
                             </a>
 
-                            <script>
-                                function modalPop(productId) {
-                                    alert('Hello');
 
-                                        /*let popUp = document.getElementById('product_' + currProId);
-
-                                        if (popUp == null) {
-                                            console.log('Modal is not found');
-                                            return;
-                                        }*/
-                                        console.log('productId: ' + productId);
-                                        debugger
-
-                                        let product = {
-                                            'product_id': currProId,
-                                            'product': productId,
-                                            'customer_id': <?php echo $_SESSION["customer_id"]; ?>
-                                        };
-
-                                        let data = JSON.stringify(product);
-
-                                        $.ajax({
-                                            method: 'POST',
-                                            url: 'modal_product.php?action=Product sent to modal',
-                                            data: data,
-                                            success: function () {
-                                                loadModal();
-                                            },
-                                            error: function (error) {
-                                                console.log(error);
-                                            }
-                                        });
-
-                                        popUp.value = '';
-
-                                }
-                                function loadModal() {
-                                    if (currProId == null) return;
-                                    let ProductId = '<?php echo $pro_id; ?>';
-                                    let ProductName = '<?php echo $pro_name; ?>';
-
-                                    if (ProductId == undefined && ProductName == undefined) return;
-
-                                    $.ajax({
-                                        method: 'GET',
-                                        url: 'modal_product.php?action=get_modal&pro_id=' + ProductId
-                                        + '&pro_name=' + ProductName,
-
-                                        success: function (data) {
-                                            let popModal = document.getElementById('myModal' + currProId);
-                                            if (popModal != null) popModal.innerHTML = data;
-                                        },
-                                        error: function () {
-                                            console.log('error');
-                                        }
-                                    });
-                                }
-                            </script>
 
                         </td>
 
@@ -280,10 +216,10 @@ $product_id = $row['product_id'];
     </div>
 
 </div>
-<div id="tmpModal"></div>
+
 
 <!--modal start-->
-<div class="modal fade"  id="myModal<?php echo $pro_id; ?>" role="dialog">
+<div class="modal fade" id="myModal" role="dialog">
     <!-- modal dialog -->
     <div class="modal-dialog">
         <div class="modal-content">
@@ -291,7 +227,7 @@ $product_id = $row['product_id'];
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <div class="mohe">
-                    <h4 class="modal-title"> Подробность</h4>
+                    <h4 class="modal-title" style="color:white;"> Подробность</h4>
                 </div>
             </div>
             <!-- end modal header-->
@@ -299,14 +235,19 @@ $product_id = $row['product_id'];
             <div class="modal-body">
                 <form role="form" action="#" method="post">
                     <fieldset>
-                        <legend><h2 class="product-name" style="text-align: justify; width:100%;font-size: 16px;"><?php echo $pro_name; ?></h2></legend>
+                        <legend><h2 class="product-name"
+                                    style="text-align: justify; width:100%;font-size: 16px;">
+                                <span id="product_name"></span></h2>
+                        </legend>
                         <div class="form-group col-xs-6">
-                            <label for="name"> Цена: <?php echo number_format($pro_price, 2); ?> руб.</label>
-
+                            <label for="name">Цена: </label>
+                            <span id="product_price"></span>
+                            <label>руб.</label>
                         </div>
 
                         <div class="form-group col-xs-6">
-                            <label for="email"> минимальное количество: <?php echo $min_order; ?> </label>
+                            <label for="email"> минимальное количество: </label>
+                            <span id="min_order"></span>
                             <div>
                                 <div class="product-rating">
                                     <i class="fa fa-star"></i>
@@ -315,7 +256,6 @@ $product_id = $row['product_id'];
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star-o empty"></i>
                                 </div>
-
                             </div>
                         </div>
 
@@ -325,42 +265,49 @@ $product_id = $row['product_id'];
 
                                 <input id="product_id" type="hidden" name="product_id" value="<?php echo $pro_id;
                                 ?>">
-                                <input id="product_quantity" class="input" type="number" name="product_quantity"
-                                       value="<?php echo $min_order;?>">
-
+                                <input style="width: 100px;" id="product_quantity" class="input" type="number" name="product_quantity"
+                                       value="1">
                             </div>
                         </div>
 
-                        <div class="form-group col-xs-6">
-                            <label for="text"> Дистрибьютор: <?php echo $dist_name; ?></label>
-
+                        <div class="form-group col-xs-12">
+                            <label for="text"> Дистрибьютор: </label>
+                            <span id="product_distributor"></span>
+                        </div><br>
+                        <div class="form-group col-xs-12" >
+                            <label for="text"> Производитель/Страна пройзводителя: </label>
+                            <span  id="product_manufacturer"></span>
                         </div>
                     </fieldset>
 
                     <fieldset>
-                        <legend> Производитель/Страна пройзводителя:</legend>
+                        <legend> Примечание:</legend>
+
                         <div class="form-group col-xs-12">
-                            <div class="product-btns">
+                            <div class="product-btns"></div>
 
+                            <div class="form-group col-xs-12">
+                                <label for="comment">  </label>
+                                <textarea class="form-control" rows="5" id="product_description">
 
+                                    </textarea>
                             </div>
-
-                        </div>
-
-                        <div class="form-group col-xs-12">
-                            <label for="comment"> Примечание: </label>
-                            <textarea class="form-control" rows="5" id="comment"></textarea>
-                        </div>
                     </fieldset>
                 </form>
             </div>
             <!-- end modal body -->
             <!-- modal footer-->
             <div class="modal-footer">
-                <div class="mohe">
+                <div class="mohe" >
 
-                    <button type="submit" class="btn btn-default btn-md btn-sm" data-dismiss="modal" style="width: 200px;">Добавить в корзину</button>
-                    <button type="submit" class="btn btn-default btn-md btn-sm" data-dismiss="modal"> отмена</button>
+
+                    <button id="add_to_cart_btn" class="btn btn-default btn-md btn-sm"
+                            style="width: 200px;"><i class="fa fa-shopping-cart"></i><span>Добавить в корзину</span>
+                    </button>
+
+                    &nbsp;&nbsp;&nbsp;
+                    <button type="submit" class="btn btn-default btn-md btn-sm" data-dismiss="modal"> отмена
+                    </button>
                 </div>
             </div>
             <!-- end modal footer -->
@@ -369,6 +316,7 @@ $product_id = $row['product_id'];
     </div>
     <!-- end modal dialog-->
 </div>
+
 
 
 
@@ -420,4 +368,8 @@ $product_id = $row['product_id'];
 		})
 	})
 </script>
+
+
+
+
 

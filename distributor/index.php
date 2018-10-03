@@ -86,6 +86,58 @@ else{
 				}
 
 				?>
+                <div style="padding-left: 100px;" class="pull-right">
+                    <ul class="header-btns">
+                        <!-- Account -->
+
+                        <!-- /Account -->
+                        <!-- Cart -->
+                        <li class="header-cart dropdown default-dropdown">
+
+                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                <div class="header-btns-icon">
+                                    <i class="fa fa-archive"></i>
+                                    <span class="qty">0</span>
+                                </div>
+                                <strong onClick="goOrders()" class="text-uppercase">Заказы:</strong>
+                                <script type="text/javascript">
+                                    function goOrders() {
+                                        window.location = "order_distributor.php";
+                                    }
+                                </script>
+                                <br>
+                                <span></span>
+                            </a>
+
+                        </li>
+                        <li class="header-cart dropdown default-dropdown">
+
+                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                <div class="header-btns-icon">
+                                    <i class="fa fa-envelope-o" ></i>
+                                    <span class="qty"><?php echo message_count(); ?></span>
+                                </div>
+
+                                <strong onClick="customerMessage()" class="text-uppercase">Сообщение</strong>
+                                <script type="text/javascript">
+                                    function customerMessage() {
+                                        window.location = "customers_messages.php";
+                                    }
+                                </script>
+                                <br>
+                                <span></span>
+                            </a>
+
+                        </li>
+                        <!-- /Cart -->
+
+                        <!-- Mobile nav toggle-->
+                        <li class="nav-toggle">
+                            <button class="nav-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
+                        </li>
+                        <!-- / Mobile nav toggle -->
+                    </ul>
+                </div>
 			</div>
 			<div class="pull-right">
 				<ul class="header-top-links">
@@ -124,51 +176,7 @@ else{
 
 
 			</div>
-			<div class="pull-right">
-				<ul class="header-btns">
-					<!-- Account -->
 
-					<!-- /Account -->
-                    <!-- Cart -->
-                    <li class="header-cart dropdown default-dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                            <div class="header-btns-icon">
-                                <i class="fa fa-envelope-o" ></i>
-                                <span class="qty"><?php echo message_count(); ?></span>
-                            </div>
-                            <strong class="text-uppercase">Сообщение</strong>
-                            <br>
-                            <span></span>
-                        </a>
-                        <div class="custom-menu">
-                            <div id="shopping-cart">
-                                <div class="shopping-cart-list">
-
-                                </div>
-                                <div class="shopping-cart-btns">
-                                    <a href="index.php">
-                                        <button class="main-btn">Личный Кабинет</button>
-                                    </a>
-                                    <a href="../logout.php">
-                                        <button class="primary-btn">Выйти <i class="fa fa-arrow-circle-right"></i>
-                                        </button>
-                                    </a>
-
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <!-- /Cart -->
-
-					<!-- Mobile nav toggle-->
-					<li class="nav-toggle">
-						<button class="nav-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
-					</li>
-					<!-- / Mobile nav toggle -->
-				</ul>
-			</div>
 		</div>
 		<!-- header -->
 

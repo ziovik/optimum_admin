@@ -27,6 +27,49 @@
                             }
                             
                             ?>
+                        <div style="padding-left: 200px;" class="pull-right">
+                            <ul class="header-btns">
+                                <!-- Account -->
+                                <li class="header-account dropdown default-dropdown">
+                                    <div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
+                                        <div class="header-btns-icon">
+                                            <i class="fa fa-user-o"></i>
+                                        </div>
+                                        <strong>Личный кабинет <i class="fa fa-caret-down"></i></strong>
+                                    </div>
+                                    <ul class="custom-menu">
+                                        <li><a href="customer/index.php"><i class="fa fa-user-o"></i> личный кабинет</a></li>
+
+                                        <li><a href="logout.php"><i class="fa fa-unlock-alt"></i> Выйти</a></li>
+                                    </ul>
+                                </li>
+                                <!-- /Account -->
+                                <!-- Cart -->
+                                <li class="header-cart dropdown default-dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                        <div class="header-btns-icon">
+                                            <i onClick="goCart()" class="fa fa-shopping-cart"></i>
+                                            <span class="qty"><?php total_items(); ?></span>
+                                        </div>
+                                        <strong onClick="goCart()" class="text-uppercase">Мои Заказы:</strong>
+                                        <script type="text/javascript">
+                                            function goCart() {
+                                                window.location = "customer_orders.php";
+                                            }
+                                        </script>
+                                        <br>
+                                        <span><?php total_price() ?></span>
+                                    </a>
+
+                                </li>
+                                <!-- /Cart -->
+                                <!-- Mobile nav toggle-->
+                                <li class="nav-toggle">
+                                    <button class="nav-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
+                                </li>
+                                <!-- / Mobile nav toggle -->
+                            </ul>
+                        </div>
                     </div>
                     <div class="pull-right">
                         <ul class="header-top-links">
@@ -61,50 +104,7 @@
                     </div>
                     <!-- /Logo -->
                 </div>
-                <div class="pull-right">
-                    <ul class="header-btns">
-                        <!-- Account -->
-                        <li class="header-account dropdown default-dropdown">
-                            <div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
-                                <div class="header-btns-icon">
-                                    <i class="fa fa-user-o"></i>
-                                </div>
-                                <strong>Личный кабинет <i class="fa fa-caret-down"></i></strong>
-                            </div>
-                            <ul class="custom-menu">
-                                <li><a href="customer/index.php"><i class="fa fa-user-o"></i> Личный кабинет </a></li>
-                                <li><a href="payment.php"><i class="fa fa-check"></i> Выписываться</a></li>
-                                <li><a href="logout.php"><i class="fa fa-unlock-alt"></i>Выити</a></li>
-                            </ul>
-                        </li>
-                        <!-- /Account -->
-                        <!-- Cart -->
-                        <li class="header-cart dropdown default-dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                                <div class="header-btns-icon">
-                                    <i onClick="goCart()" class="fa fa-shopping-cart"></i>
-                                    <span class="qty"><?php total_items(); ?></span>
-                                </div>
-                                <strong onClick="goCart()" class="text-uppercase">Мои Заказы:</strong>
-                                <script type="text/javascript">
-                                    function goCart() {
-                                        window.location = "customer_orders.php";
-                                    }
-                                </script>
-                                <br>
-                                <span><?php total_price() ?></span>
-                            </a>
 
-                        </li>
-                        <!-- Cart -->
-                        <!-- Mobile nav toggle-->
-                        <li class="nav-toggle">
-                        <button class="nav-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
-                        </li>
-                        <!-- / Mobile nav toggle -->
-                    </ul>
-                    </div>
-                </div>
                 <!-- header -->
             </div>
             <!-- container -->

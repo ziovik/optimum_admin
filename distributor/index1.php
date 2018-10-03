@@ -65,17 +65,17 @@ else{
 </head>
 
 <body>
-	
-<header>
-		<!-- top Header -->
-		<div id="top-header">
-			<div class="container">
-				<div class="pull-left">
-					 <?php
 
-                if (isset($_SESSION['distributor_id'] )) {
+<header>
+    <!-- top Header -->
+    <div id="top-header">
+        <div class="container">
+            <div class="pull-left">
+                <?php
+
+                if (isset($_SESSION['distributor_id'])) {
                     include("../inc/db.php");
-                   $dist_id = $_SESSION['distributor_id'] ;
+                    $dist_id = $_SESSION['distributor_id'];
 
                     $get_info = "select
                                        c.name as company_name
@@ -87,7 +87,6 @@ else{
                     $run_name = mysqli_query($con, $get_info);
 
 
-
                     $row = mysqli_fetch_array($run_name);
 
                     $company_name = $row['company_name'];
@@ -95,104 +94,108 @@ else{
                     echo "<span>Добро пожаловать  в OPTIMUM BEAUTY   :    </span>" . $company_name . "<span></span>";
 
 
-
                 } else {
                     echo "<b>Добро пожаловать Гость</b>";
                 }
 
                 ?>
-				</div>
-				<div class="pull-right">
-					<ul class="header-top-links">
-                    <?php
-
-                    if (!isset($_SESSION['distributor_id'])) {
-                        echo "<button style='width:100px;' background:#800080; border-radius:5px;' class='btn next-btn'><a href='#' class='text-uppercase' style='color:#fff;'>Войти</a></buuton>";
-                    } else {
-
-                        echo  '<input style="color: white; width:100px;" class="btn next-btn" type="submit" value="Выйти" onClick="logout()">';
-
-                    }
-
-                    ?>
-                        <script type="text/javascript">
-                            function logout() {
-                                window.location = "../logout.php";
-                            }
-                        </script>
-
-                </ul>
-				</div>
-			</div>
-		</div>
-		<!-- /top Header -->
-
-		<!-- header -->
-		<div id="header">
-			<div class="container">
-				<div class="pull-left">
-					<!-- Logo -->
-					<div class="header-logo" style=" padding-left: 50px;">
-						<a class="logo" href="index.php">
-							<img src="../img/logo.png" alt="">
-						</a>
-					</div>
-					<!-- /Logo -->
-
-					
-					
-				</div>
-                <div class="pull-right">
+                <div style="padding-left: 100px;" class="pull-right">
                     <ul class="header-btns">
                         <!-- Account -->
 
                         <!-- /Account -->
                         <!-- Cart -->
                         <li class="header-cart dropdown default-dropdown">
+
+                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                <div class="header-btns-icon">
+                                    <i class="fa fa-archive"></i>
+                                    <span class="qty">0</span>
+                                </div>
+                                <strong onClick="goOrders()" class="text-uppercase">Заказы:</strong>
+                                <script type="text/javascript">
+                                    function goOrders() {
+                                        window.location = "order_distributor.php";
+                                    }
+                                </script>
+                                <br>
+                                <span></span>
+                            </a>
+
+                        </li>
+                        <li class="header-cart dropdown default-dropdown">
+
                             <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                 <div class="header-btns-icon">
                                     <i class="fa fa-envelope-o" ></i>
                                     <span class="qty"><?php echo message_count(); ?></span>
                                 </div>
-                                <strong class="text-uppercase">Сообщение</strong>
+
+                                <strong onClick="customerMessage()" class="text-uppercase">Сообщение</strong>
+                                <script type="text/javascript">
+                                    function customerMessage() {
+                                        window.location = "customers_messages.php";
+                                    }
+                                </script>
                                 <br>
                                 <span></span>
                             </a>
-                            <div class="custom-menu">
-                                <div id="shopping-cart">
-                                    <div class="shopping-cart-list">
 
-                                    </div>
-                                    <div class="shopping-cart-btns">
-                                        <a href="index.php">
-                                            <button class="main-btn">Личный Кабинет</button>
-                                        </a>
-                                        <a href="../logout.php">
-                                            <button class="primary-btn">Выйти <i class="fa fa-arrow-circle-right"></i>
-                                            </button>
-                                        </a>
-
-
-
-                                    </div>
-                                </div>
-                            </div>
                         </li>
                         <!-- /Cart -->
 
                         <!-- Mobile nav toggle-->
-						<li class="nav-toggle">
-							<button class="nav-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
-						</li>
-						<!-- / Mobile nav toggle -->
-					</ul>
-				</div>
-			</div>
-			<!-- header -->
-			
-		</div>
-		<!-- container -->
-	</header>
+                        <li class="nav-toggle">
+                            <button class="nav-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
+                        </li>
+                        <!-- / Mobile nav toggle -->
+                    </ul>
+                </div>
+            </div>
+            <div class="pull-right">
+                <ul class="header-top-links">
+                    <?php
+
+                    if (!isset($_SESSION['distributor_id'])) {
+                        echo "<button style='width:100px; background:#800080; border-radius:5px;' class='btn next-btn'><a href='#' class='text-uppercase' style='color:#fff;'>Войти</a></button>";
+                    } else {
+
+                        echo  '<input style="color: white; width:100px;" class="btn next-btn" type="submit" value="Выйти" onClick="logout()">';
+                    }
+
+                    ?>
+                    <script type="text/javascript">
+                        function logout() {
+                            window.location = "../logout.php";
+                        }
+                    </script>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /top Header -->
+
+    <!-- header -->
+    <div id="header">
+        <div class="container">
+            <div class="pull-left">
+                <!-- Logo -->
+                <div class="header-logo" style=" padding-left: 50px;">
+                    <a class="logo" href="index.php">
+                        <img src="../img/logo.png" alt="">
+                    </a>
+                </div>
+                <!-- /Logo -->
+
+
+            </div>
+
+        </div>
+        <!-- header -->
+
+    </div>
+    <!-- container -->
+</header>
 
 	<!-- NAVIGATION -->
 	<div id="navigation">
