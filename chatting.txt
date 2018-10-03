@@ -1,0 +1,79 @@
+do you see it?
+wooooooooooooooooooooow
+you think i am stupid?))
+y do u say that
+I am joking)))
+u will explain to me tomorrow ok.
+let's continue tomorrow, cosa I need to do card
+do you see?
+for who
+for company)
+our company))
+which company
+future company for saling autoshampoooooooo
+selling
+buyesl!S!!
+bulshit
+hsha)) you wanna me find a job) so I am making company )))
+okso let's me push it to git, and tomorrow we need to continue, but, man, I have many deals tomorrow, und?
+my partners wann me to print this cards and test shampooo, und?
+ok
+then may be evenig tomorrow ok
+I can do it right now
+for 5 mins
+ok
+so, let me tell you
+we have allcosm, and I put modal in the same file, und?
+yes
+but, how can I change values in product_name and price in modal?
+throught jquery and Javascript
+I need to invoke a fucntion which put these values, und?
+ok
+when I need to do it? when I press on any product, in the moment, when modal is openning, right?
+yes
+so I can do it, BUT, I don't have enough details in the table, so I need to get aaaal values, form DB, agree?
+yes
+so I need to send AJAX, agree?
+yes
+and now look
+this is link with product name.. when I press it I invoke onProductClick function, und?
+yes
+and I pass there pro_id, agreee?
+yes
+then I send this pro_id throught HttpRequest (AJAX) to server, right?
+ok
+modal_product - it is just a handler of this request, und?
+k
+I am getting from request product_id and check it in DB, then I am getting data from DB, and send it to clinet - allcosm
+as JSON object, und?
+ok.
+I am using Product class, und?
+save this chat ok
+ok
+und?
+yes
+BUT! we need to put other fields in Product und?
+It is not enough, do you see?
+so, I JSONized this product object and send it to client, und?
+ok
+if httprequest (AJAX) is ok, I am getting this product in onProductClick() functino, und?
+yes
+so , now, I can use jQuery to put values from the data from server (Product object)
+and put it throught jQuery
+und?
+yes
+here I put value, und?
+so i can add other fields like min description
+YOU HAVE TO DO IT BY YOURSELF!!!!
+und?
+remember i need to press the add to cart button in this modal
+Добавить в корзину?
+yes but i have not done ot.i need copy the codes n put in modal product page?
+modal page is the allcosm page!!! don't forget it!
+when you press "Добавить в корзину" - it will be another ajax query!!!
+it is very simple, man
+yes i know im saying we did add to cart before.i will copy the code n include in allcosm ?
+if you like
+so, I am pushing it into github and disconnect, man, I have to work
+thx
+bye

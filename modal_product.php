@@ -2,9 +2,12 @@
 include("inc/db.php");
 include("db_objects/product.php");
 
+
+/*done i need to pass the pro_id from the link in allcosm*/
 if (isset($_GET['pro_id'])) {
-    $product_id = $_GET['pro_id'];
-    $sql = "select 
+	$product_id = $_GET['pro_id'];
+
+	$sql = "select 
                  p.id as id,
                  p.name as name,
                  st.price as price,
@@ -20,19 +23,23 @@ if (isset($_GET['pro_id'])) {
                    join company c on c.id = d.company_id
                    
               where p.id='$product_id'";
-    $result = mysqli_query($con, $sql);
-    $product = null;
-    while ($rows = mysqli_fetch_array($result)) {
-        $pro_id = $rows['id'];
-        $pro_name = $rows['name'];
-        $pro_price = $rows['price'];
-        $pro_dist = $rows['distributor_id'];
-        $pro_desc = $rows['description'];
-        $min_order = $rows['min_order'];
-        $max_order = $rows['max_order'];
-        $pro_manu = $rows['manufacturer'];
-        $dist_name = $rows['company_name'];
-        $product = new Product($pro_id, $pro_name, $pro_desc, $pro_manu, null, $pro_price, $pro_dist, null, $min_order, $dist_name );
-    }
-    print_r(json_encode($product));
+
+	$result = mysqli_query($con, $sql);
+	$product = null;
+
+
+	while ($rows = mysqli_fetch_array($result)) {
+		$pro_id = $rows['id'];
+		$pro_name = $rows['name'];
+		$pro_price = $rows['price'];
+		$pro_dist = $rows['distributor_id'];
+		$pro_desc = $rows['description'];
+		$min_order = $rows['min_order'];
+		$max_order = $rows['max_order'];
+		$pro_manu = $rows['manufacturer'];
+		$dist_name = $rows['company_name'];
+		$product = new Product($pro_id, $pro_name, $pro_desc, $pro_manu, null, $pro_price, $pro_dist, null);
+	}
+
+	print_r(json_encode($product));
 }
